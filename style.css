@@ -1,4 +1,4 @@
-body{
+! body{
     margin:0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #800020, #e6e6fa);
@@ -154,3 +154,20 @@ hr{
     0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
     100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
 }
+
+
+setInterval(() => {
+
+    const paw = document.createElement("div");
+    paw.classList.add("paw");
+    paw.innerHTML = "🐾";
+
+    paw.style.left = Math.random() * window.innerWidth + "px";
+
+    document.body.appendChild(paw);
+
+    setTimeout(() => {
+        paw.remove();
+    }, 6000);
+
+}, 1200);
