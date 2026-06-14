@@ -63,3 +63,10 @@ h1{
         transform:translateY(0px);
     }
 }
+
+.letter{
+    font-size:18px;
+    line-height:1.8;
+    color:#444;
+    text-align:left;
+}
