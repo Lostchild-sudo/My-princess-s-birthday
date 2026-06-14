@@ -94,3 +94,22 @@ document.addEventListener("click", function(event) {
     }
 
 });
+
+// Falling hearts
+setInterval(() => {
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+
+}, 500);
