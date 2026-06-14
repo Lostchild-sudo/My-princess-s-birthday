@@ -90,3 +90,11 @@ h1{
         opacity: 0;
     }
 }
+
+.promise{
+    background:#800020;
+    color:white;
+    padding:15px;
+    margin-top:15px;
+    border-radius:15px;
+}
