@@ -1,69 +1,99 @@
 body{
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #800020, #e6e6fa);
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
-    margin:0;
-    font-family:Arial, sans-serif;
+    overflow:hidden;
 }
 
 .container{
     background:white;
-    padding:30px;
+    padding:25px;
     border-radius:20px;
-    text-align:center;
     width:90%;
-    max-width:500px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    max-width:520px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    overflow-y:auto;
+    max-height:90vh;
 }
 
 h1{
-    color:#ff4d6d;
+    color:#800020;
 }
 
 #message{
-    font-size:20px;
-    margin-top:20px;
+    font-size:18px;
 }
 
 #countdown{
-    margin-top:25px;
-    font-size:24px;
+    margin-top:20px;
+    font-size:20px;
+    color:#800020;
     font-weight:bold;
-    color:#ff4d6d;
 }
 
-#openGift{
-    background:#ff4d6d;
+button{
+    background:#800020;
     color:white;
     border:none;
-    padding:15px 25px;
-    font-size:18px;
-    border-radius:30px;
+    padding:12px 20px;
+    border-radius:25px;
     cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    opacity:0.9;
 }
 
 .gift-box{
     font-size:90px;
-    cursor:pointer;
     animation: float 2s infinite;
+    cursor:pointer;
 }
 
 @keyframes float{
-    0%{
-        transform:translateY(0px);
-    }
-
-    50%{
-        transform:translateY(-10px);
-    }
-
-    100%{
-        transform:translateY(0px);
-    }
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0);}
 }
 
+.letter{
+    text-align:left;
+    line-height:1.8;
+    color:#333;
+}
+
+.promise{
+    background:#800020;
+    color:white;
+    padding:12px;
+    margin-top:10px;
+    border-radius:12px;
+    font-size:14px;
+}
+
+hr{
+    margin:20px 0;
+    border:1px solid #e6e6fa;
+}
+
+/* falling hearts */
+.heart{
+    position:fixed;
+    font-size:22px;
+    animation: fall 5s linear forwards;
+    pointer-events:none;
+}
+
+@keyframes fall{
+    0%{transform:translateY(-100px); opacity:1;}
+    100%{transform:translateY(100vh); opacity:0;}
+}
 .letter{
     font-size:18px;
     line-height:1.8;
