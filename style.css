@@ -33,3 +33,13 @@ h1{
     font-weight:bold;
     color:#ff4d6d;
 }
+
+#openGift{
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    font-size:18px;
+    border-radius:30px;
+    cursor:pointer;
+}
