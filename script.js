@@ -62,36 +62,78 @@ document.addEventListener("click", function(event) {
 // Open the gift box
 document.addEventListener("click", function(event) {
 
-    if (event.target.id === "giftBox") {
+if (event.target.id === "giftBox") {
 
-        document.querySelector(".container").innerHTML = `
+    document.querySelector(".container").innerHTML = `
 
-            <h1>Happy Birthday My Cute Cat Jasmin 🐱❤️</h1>
+    <h1>Happy Birthday My Cute Cat Jasmin 🐱❤️</h1>
 
-            <p class="letter">
+    <p class="letter">
 
-            My precious baby girl,<br><br>
+    My precious baby girl,<br><br>
 
-            Happy Birthday ❤️<br><br>
+    Happy Birthday ❤️<br><br>
 
-            Even though we have met only once, that moment became very special to me.<br><br>
+    Even though we have met only once, that moment became very special to me.<br><br>
 
-            I still remember looking into your beautiful eyes for the first time.<br><br>
+    I still remember looking into your beautiful eyes for the first time.<br><br>
 
-            And I still remember our first handshake and how happy I felt in that moment.<br><br>
+    And I still remember our first handshake and how happy I felt in that moment.<br><br>
 
-            Thank you for being part of my life.<br><br>
+    Thank you for being part of my life.<br><br>
 
-            I hope this birthday brings you happiness, smiles, and lots of love.<br><br>
+    Please always take care of yourself, eat properly, and keep smiling.<br><br>
 
-            Please always take care of yourself, eat properly, and keep smiling.<br><br>
+    — From your silly human ❤️
 
-            — From your silly human ❤️
+    </p>
 
-            </p>
+    <hr>
 
-        `;
-    }
+    <h2>🐱 10 Promises To My Cute Cat Jasmin ❤️</h2>
+
+    <div class="promise">
+    ❤️ I'll always try to understand you.
+    </div>
+
+    <div class="promise">
+    ❤️ I'll remind you to take care of yourself.
+    </div>
+
+    <div class="promise">
+    ❤️ I'll celebrate your achievements.
+    </div>
+
+    <div class="promise">
+    ❤️ I'll support your dreams.
+    </div>
+
+    <div class="promise">
+    ❤️ I'll always respect your feelings.
+    </div>
+
+    <div class="promise">
+    ❤️ I'll try my best to make you smile.
+    </div>
+
+    <div class="promise">
+    ❤️ I'll listen to you when you need someone.
+    </div>
+
+    <div class="promise">
+    ❤️ I'll never forget our first meeting.
+    </div>
+
+    <div class="promise">
+    ❤️ I'll treasure our memories.
+    </div>
+
+    <div class="promise">
+    ❤️ I'll always wish happiness for my cute cat.
+    </div>
+
+    `;
+}
 
 });
 
