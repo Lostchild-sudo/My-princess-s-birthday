@@ -150,7 +150,7 @@ function startCinematicReveal() {
     card.style.opacity = "0";
 
     setTimeout(() => {
-        // ONLY NOW the image is inserted - after correct answer!
+        // PHOTO ONLY APPEARS HERE — after correct answer!
         card.innerHTML = `
             <div class="scene">
                 <h1 class="final-title">
