@@ -91,7 +91,7 @@ function attachEvents() {
 
         if (
             clean.includes("17") &&
-            (clean.includes("2026") || clean.includes("june") || clean.includes("jun"))
+            (clean.includes("january") || clean.includes("february") || clean.includes("march"))
         ) {
 
             response.innerHTML = "Unlocked ❤️";
