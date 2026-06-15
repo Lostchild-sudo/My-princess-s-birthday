@@ -47,3 +47,36 @@ function updateCountdown() {
 updateCountdown();
 
 setInterval(updateCountdown, 1000);
+
+const openMemory = document.getElementById("openMemory");
+const memoryGate = document.getElementById("memoryGate");
+const submitAnswer = document.getElementById("submitAnswer");
+const response = document.getElementById("response");
+
+openMemory.addEventListener("click", () => {
+    memoryGate.style.display = "block";
+});
+
+submitAnswer.addEventListener("click", () => {
+
+    const ans = document.getElementById("answer").value.toLowerCase().trim();
+
+    // simple emotional answer (we'll customize later)
+    if(ans === "jasmin" || ans === "cute cat"){
+
+        response.innerHTML = "Unlocked ❤️";
+
+        document.querySelector(".card").innerHTML = `
+            <h1>Memory 🌸</h1>
+            <p style="margin-top:20px; line-height:1.8;">
+                I still remember the first time I saw your eyes.<br><br>
+                And that small handshake… it stayed with me.<br><br>
+                Some moments don't need many words.
+            </p>
+        `;
+
+    } else {
+        response.innerHTML = "Try again 🌿";
+    }
+
+});
