@@ -1,6 +1,6 @@
 const countdown = document.getElementById("countdown");
 
-const targetDate = new Date("June 16, 2026 00:00:00").getTime();
+const targetDate = new Date("June 1, 2026 00:00:00").getTime();
 
 let unlocked = false;
 let snowInterval = null;
