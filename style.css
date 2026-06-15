@@ -69,3 +69,50 @@ h1{
     color:#ffffff;
     line-height:1.8;
 }
+
+/* Gentle breathing animation */
+.card{
+    animation: breathe 5s ease-in-out infinite;
+}
+
+@keyframes breathe{
+    0%{
+        transform: scale(1);
+    }
+
+    50%{
+        transform: scale(1.015);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+}
+
+
+/* Tiny stars */
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    opacity:0.8;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle{
+
+    0%{
+        opacity:0.2;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0.2;
+    }
+
+}
