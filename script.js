@@ -3,6 +3,7 @@ const countdown = document.getElementById("countdown");
 const targetDate = new Date("June 16, 2026 00:00:00").getTime();
 
 let unlocked = false;
+let snowInterval = null;
 
 /* ---------------- COUNTDOWN ---------------- */
 
@@ -20,15 +21,7 @@ function updateCountdown() {
                 Your gift is ready ✨
             </div>
 
-            <button id="openMemory" style="
-                margin-top:15px;
-                padding:10px 18px;
-                border:none;
-                border-radius:20px;
-                background:#D4AF37;
-                color:black;
-                cursor:pointer;
-            ">
+            <button id="openMemory">
                 Unlock Memory 💌
             </button>
 
@@ -45,36 +38,18 @@ function updateCountdown() {
                     Happy Birthday to my sweet girl ❤️
                 </p>
 
-                <p style="margin-top:10px;">
-                    Answer to unlock memory 🌸
-                </p>
+                <p>Answer to unlock memory 🌸</p>
 
-                <input id="answer" placeholder="Type your answer..." style="
-                    padding:10px;
-                    border-radius:10px;
-                    border:none;
-                    outline:none;
-                    width:80%;
-                "/>
+                <input id="answer" placeholder="Type your answer..." />
 
-                <button id="submitAnswer" style="
-                    margin-top:10px;
-                    padding:10px 15px;
-                    border:none;
-                    border-radius:15px;
-                    background:#800020;
-                    color:white;
-                    cursor:pointer;
-                ">
-                    Submit
-                </button>
+                <button id="submitAnswer">Submit</button>
 
                 <p id="response"></p>
 
             </div>
         `;
 
-        attachEvents();
+        setTimeout(attachEvents, 100);
         return;
     }
 
@@ -103,6 +78,8 @@ function attachEvents() {
     const submit = document.getElementById("submitAnswer");
     const response = document.getElementById("response");
 
+    if (!openMemory) return;
+
     openMemory.addEventListener("click", () => {
         memoryGate.style.display = "block";
     });
@@ -122,7 +99,7 @@ function attachEvents() {
             startCinematicReveal();
 
         } else {
-            response.innerHTML = "Not quite 🌿 try again...";
+            response.innerHTML = "Try again 🌿";
         }
     });
 }
@@ -133,23 +110,34 @@ function startCinematicReveal() {
 
     document.body.style.background = "#0b0b10";
 
-    document.querySelector(".card").style.transition = "all 1.5s ease";
     document.querySelector(".card").style.opacity = "0";
 
     setTimeout(() => {
 
         document.querySelector(".card").innerHTML = `
 
-        <div class="scene">
+        <div style="text-align:center; animation:fadeIn 2s ease;">
 
             <h1 style="color:#E6E6FA;">Memory Unlocked 🌸</h1>
 
-            <div class="photo-frame">
-
-                <img src="images/jasmin.jpg" />
-
-                <div class="cloud-layer"></div>
-
+            <div style="
+                width:200px;
+                margin:20px auto;
+                border-radius:20px;
+                overflow:hidden;
+                box-shadow:0 0 25px rgba(255,255,255,0.3);
+                position:relative;
+            ">
+                <img src="images/jasmin.jpg" style="width:100%;">
+                <div style="
+                    position:absolute;
+                    top:0;
+                    left:0;
+                    width:100%;
+                    height:100%;
+                    background:rgba(255,255,255,0.08);
+                    animation: cloudMove 6s infinite alternate;
+                "></div>
             </div>
 
             <p style="color:#E6E6FA;">
@@ -170,17 +158,18 @@ function startCinematicReveal() {
 
         startSnowfall();
 
-    }, 1200);
+    }, 800);
 }
 
-/* ---------------- SNOWFALL ---------------- */
+/* ---------------- SNOWFALL (LIMITED) ---------------- */
 
 function startSnowfall() {
 
-    setInterval(() => {
+    if (snowInterval) clearInterval(snowInterval);
+
+    snowInterval = setInterval(() => {
 
         const snow = document.createElement("div");
-
         snow.innerHTML = "❄️";
 
         snow.style.position = "fixed";
@@ -193,9 +182,7 @@ function startSnowfall() {
 
         document.body.appendChild(snow);
 
-        setTimeout(() => {
-            snow.remove();
-        }, 6000);
+        setTimeout(() => snow.remove(), 6000);
 
-    }, 300);
+    }, 400);
 }
