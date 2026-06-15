@@ -156,7 +156,7 @@ function startCinematicReveal() {
 
                 <br><br>
 
-                — Your Cute Cat 🐱
+                — My Cute Cat 😚
 
             </div>
 
