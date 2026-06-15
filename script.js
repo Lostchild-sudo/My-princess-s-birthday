@@ -17,7 +17,6 @@ function updateCountdown() {
     if (distance <= 0 && !unlocked) {
         unlocked = true;
         
-        // Stop the countdown interval to save resources
         clearInterval(countdownInterval);
 
         countdown.innerHTML = `
@@ -73,7 +72,6 @@ function updateCountdown() {
     `;
 }
 
-// Start countdown
 countdownInterval = setInterval(updateCountdown, 1000);
 updateCountdown();
 
@@ -96,7 +94,7 @@ function attachEvents() {
             ambienceMusic.volume = 0.20;
             await ambienceMusic.play();
         } catch (err) {
-            console.log("Audio play failed (browser policy):", err);
+            console.log("Audio play failed:", err);
         }
 
         openMemory.textContent = "Memory Unlocked 💌";
@@ -152,6 +150,7 @@ function startCinematicReveal() {
     card.style.opacity = "0";
 
     setTimeout(() => {
+        // ONLY NOW the image is inserted - after correct answer!
         card.innerHTML = `
             <div class="scene">
                 <h1 class="final-title">
