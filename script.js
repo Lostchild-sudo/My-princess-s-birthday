@@ -31,19 +31,17 @@ function updateCountdown() {
 
             <div id="memoryGate" style="display:none; margin-top:15px;">
 
-                <img src="images/jasmin.jpg"
-                style="
-                    width:140px;
-                    border-radius:18px;
-                    margin-top:10px;
-                    box-shadow:0 0 25px rgba(255,255,255,0.25);
-                ">
-
                 <p style="color:#E6E6FA; margin-top:10px;">
                     Happy Birthday to my sweet girl ❤️
                 </p>
 
-                <p>Answer to unlock memory 🌸</p>
+                <p style="color:#fff; margin:15px 0;">
+                    Answer this riddle to unlock your memory 🌸
+                </p>
+
+                <p style="color:#D4AF37; font-style:italic; margin-bottom:15px;">
+                    "What number holds the key to your heart?"
+                </p>
 
                 <input id="answer" placeholder="Type your answer..." autocomplete="off" />
 
@@ -99,22 +97,18 @@ function attachEvents() {
             await ambienceMusic.play();
         } catch (err) {
             console.log("Audio play failed (browser policy):", err);
-            // Continue without audio - don't break the experience
         }
 
         openMemory.textContent = "Memory Unlocked 💌";
         memoryGate.style.display = "block";
         
-        // Focus on input for better UX
         if (answerInput) {
             setTimeout(() => answerInput.focus(), 300);
         }
     });
 
-    // Handle submit button click
     submit.addEventListener("click", checkAnswer);
 
-    // Handle Enter key press
     if (answerInput) {
         answerInput.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
@@ -138,7 +132,6 @@ function attachEvents() {
             response.innerHTML = "Try again 🌿";
             response.style.color = "#FFB6C1";
             
-            // Shake animation for wrong answer
             answerInput.style.animation = "shake 0.5s ease";
             setTimeout(() => {
                 answerInput.style.animation = "";
@@ -245,7 +238,6 @@ function startLavenderParticles() {
 
 /* ---------------- CLEANUP ---------------- */
 
-// Clean up intervals when page is unloaded
 window.addEventListener("beforeunload", () => {
     if (countdownInterval) clearInterval(countdownInterval);
     if (snowInterval) clearInterval(snowInterval);
