@@ -62,7 +62,12 @@ submitAnswer.addEventListener("click", () => {
     const ans = document.getElementById("answer").value.toLowerCase().trim();
 
     // simple emotional answer (we'll customize later)
-    if(ans === "jasmin" || ans === "cute cat"){
+    const clean = ans.replace(/\s+/g, " ").trim();
+
+if (
+    clean.includes("17") &&
+    (clean.includes("2026") || clean.includes("june") || clean.includes("jun"))
+) {
 
         response.innerHTML = "Unlocked ❤️";
 
