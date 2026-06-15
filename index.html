@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jasmin's Birthday</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Background Glow -->
     <div class="background-glow"></div>
 
-    <!-- Main Card -->
     <div class="card">
 
         <div class="gold-line"></div>
@@ -28,21 +25,14 @@
 
         <div id="countdown"></div>
 
-        <button id="openMemory">Unlock Memory 💌</button>
-
-<div id="memoryGate" style="display:none;">
-    <p>Answer this to unlock a memory 🌸</p>
-
-    <input id="answer" placeholder="Type your answer..." />
-
-    <button id="submitAnswer">Submit</button>
-
-    <p id="response"></p>
-</div>
-
         <div class="gold-line"></div>
 
     </div>
+
+    <!-- Background ambience music -->
+    <audio id="ambienceMusic" loop>
+        <source src="audio/ambience.mp3" type="audio/mpeg">
+    </audio>
 
     <script src="script.js"></script>
 
