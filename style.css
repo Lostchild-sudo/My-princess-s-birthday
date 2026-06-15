@@ -163,3 +163,42 @@ input{
         opacity:0;
     }
 }
+
+/* Floating lavender particles */
+.particle{
+    position:fixed;
+    font-size:18px;
+    pointer-events:none;
+    animation: floatUp 10s linear forwards;
+    opacity:0.8;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+
+/* Final title */
+.final-title{
+    font-size:42px;
+    color:#E6E6FA;
+    margin-top:25px;
+    animation:fadeIn 3s ease;
+}
+
+.final-message{
+    line-height:1.8;
+    margin-top:20px;
+    color:white;
+}
