@@ -116,43 +116,46 @@ function startCinematicReveal() {
 
         document.querySelector(".card").innerHTML = `
 
-        <div style="text-align:center; animation:fadeIn 2s ease;">
+<div class="scene">
 
-            <h1 style="color:#E6E6FA;">Memory Unlocked 🌸</h1>
+    <h1 class="final-title">
+        For Jasmin 💜
+    </h1>
 
-            <div style="
-                width:200px;
-                margin:20px auto;
-                border-radius:20px;
-                overflow:hidden;
-                box-shadow:0 0 25px rgba(255,255,255,0.3);
-                position:relative;
-            ">
-                <img src="images/jasmin.jpg" style="width:100%;">
-                <div style="
-                    position:absolute;
-                    top:0;
-                    left:0;
-                    width:100%;
-                    height:100%;
-                    background:rgba(255,255,255,0.08);
-                    animation: cloudMove 6s infinite alternate;
-                "></div>
-            </div>
+    <div class="photo-frame">
 
-            <p style="color:#E6E6FA;">
-                Happy Birthday to my sweet girl ❤️
-            </p>
+        <img src="images/jasmin.jpg">
 
-            <p style="color:white; line-height:1.6;">
-                I still remember the day we met.<br>
-                17th — a moment I can never forget.<br>
-                Some memories don’t need many words.
-            </p>
+        <div class="cloud-layer"></div>
 
-        </div>
+    </div>
 
-        `;
+    <p style="color:#E6E6FA;">
+        Happy Birthday to my sweet girl ❤️
+    </p>
+
+    <div class="final-message">
+
+        Thank you for every smile.
+
+        <br><br>
+
+        Even though we met only once,
+        that memory became precious to me.
+
+        <br><br>
+
+        Your beautiful eyes and that first handshake
+        are memories I still cherish.
+
+        <br><br>
+
+        — Your Cute Cat 🐱
+
+    </div>
+
+</div>
+`;
 
         document.querySelector(".card").style.opacity = "1";
 
