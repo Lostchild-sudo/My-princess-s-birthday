@@ -186,3 +186,27 @@ function startSnowfall() {
 
     }, 400);
 }
+
+function startLavenderParticles(){
+
+    setInterval(() => {
+
+        const particle = document.createElement("div");
+
+        particle.className = "particle";
+
+        particle.innerHTML = "💜";
+
+        particle.style.left = Math.random() * window.innerWidth + "px";
+
+        particle.style.fontSize =
+            (14 + Math.random() * 10) + "px";
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 10000);
+
+    }, 1200);
+}
