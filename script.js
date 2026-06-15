@@ -69,7 +69,7 @@ if (
     (clean.includes("2026") || clean.includes("june") || clean.includes("jun"))
 ) {
 
-        response.innerHTML = "Unlocked ❤️";
+        response.innerHTML = "Correct ❤️ Memory unlocked...";
 
         document.querySelector(".card").innerHTML = `
             <h1>Memory 🌸</h1>
@@ -81,7 +81,7 @@ if (
         `;
 
     } else {
-        response.innerHTML = "Try again 🌿";
+        response.innerHTML = "Not quite 🌿 try remembering our special day...";
     }
 
 });
