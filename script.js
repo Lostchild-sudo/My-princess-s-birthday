@@ -6,20 +6,22 @@ const targetDate = new Date("June 16, 2026 00:00:00").getTime();
 let unlocked = false;
 let snowInterval = null;
 let particleInterval = null;
+let countdownInterval = null;
 
 /* ---------------- COUNTDOWN ---------------- */
 
 function updateCountdown() {
-
     const now = new Date().getTime();
     const distance = targetDate - now;
 
     if (distance <= 0 && !unlocked) {
-
         unlocked = true;
+        
+        // Stop the countdown interval to save resources
+        clearInterval(countdownInterval);
 
         countdown.innerHTML = `
-            <div style="font-size:18px; color:#fff;">
+            <div style="font-size:18px; color:#fff; margin-bottom:15px;">
                 Your gift is ready ✨
             </div>
 
@@ -43,7 +45,9 @@ function updateCountdown() {
 
                 <p>Answer to unlock memory 🌸</p>
 
-                <input id="answer" placeholder="Type your answer..." />
+                <input id="answer" placeholder="Type your answer..." autocomplete="off" />
+
+                <p class="hint-text">Press Enter to submit</p>
 
                 <button id="submitAnswer">
                     Submit
@@ -55,7 +59,6 @@ function updateCountdown() {
         `;
 
         setTimeout(attachEvents, 100);
-
         return;
     }
 
@@ -72,98 +75,119 @@ function updateCountdown() {
     `;
 }
 
-setInterval(updateCountdown, 1000);
+// Start countdown
+countdownInterval = setInterval(updateCountdown, 1000);
 updateCountdown();
 
 /* ---------------- EVENTS ---------------- */
 
 function attachEvents() {
-
     const openMemory = document.getElementById("openMemory");
     const memoryGate = document.getElementById("memoryGate");
     const submit = document.getElementById("submitAnswer");
     const response = document.getElementById("response");
+    const answerInput = document.getElementById("answer");
 
     if (!openMemory) return;
 
-    openMemory.addEventListener("click", () => {
+    openMemory.addEventListener("click", async () => {
+        openMemory.disabled = true;
+        openMemory.textContent = "Loading...";
 
-        ambienceMusic.volume = 0.20;
-        ambienceMusic.play();
+        try {
+            ambienceMusic.volume = 0.20;
+            await ambienceMusic.play();
+        } catch (err) {
+            console.log("Audio play failed (browser policy):", err);
+            // Continue without audio - don't break the experience
+        }
 
+        openMemory.textContent = "Memory Unlocked 💌";
         memoryGate.style.display = "block";
-    });
-
-    submit.addEventListener("click", () => {
-
-        const ans = document.getElementById("answer").value.toLowerCase().trim();
-
-        if (ans.includes("17")) {
-
-            response.innerHTML = "Unlocked ❤️";
-
-            startCinematicReveal();
-
-        } else {
-
-            response.innerHTML = "Try again 🌿";
-
+        
+        // Focus on input for better UX
+        if (answerInput) {
+            setTimeout(() => answerInput.focus(), 300);
         }
     });
+
+    // Handle submit button click
+    submit.addEventListener("click", checkAnswer);
+
+    // Handle Enter key press
+    if (answerInput) {
+        answerInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                checkAnswer();
+            }
+        });
+    }
+
+    function checkAnswer() {
+        const ans = answerInput.value.toLowerCase().trim();
+
+        if (ans === "17") {
+            response.innerHTML = "Unlocked ❤️";
+            response.style.color = "#90EE90";
+            
+            submit.disabled = true;
+            answerInput.disabled = true;
+            
+            startCinematicReveal();
+        } else {
+            response.innerHTML = "Try again 🌿";
+            response.style.color = "#FFB6C1";
+            
+            // Shake animation for wrong answer
+            answerInput.style.animation = "shake 0.5s ease";
+            setTimeout(() => {
+                answerInput.style.animation = "";
+                answerInput.value = "";
+                answerInput.focus();
+            }, 500);
+        }
+    }
 }
 
 /* ---------------- CINEMATIC REVEAL ---------------- */
 
 function startCinematicReveal() {
-
     document.body.style.background = "#0b0b10";
+    document.body.style.transition = "background 1.5s ease";
 
-    document.querySelector(".card").style.opacity = "0";
+    const card = document.querySelector(".card");
+    card.style.opacity = "0";
 
     setTimeout(() => {
+        card.innerHTML = `
+            <div class="scene">
+                <h1 class="final-title">
+                    For Jasmin 💜
+                </h1>
 
-        document.querySelector(".card").innerHTML = `
+                <div class="photo-frame">
+                    <img src="images/jasmin.jpg" alt="Jasmin">
+                </div>
 
-        <div class="scene">
+                <p style="color:#E6E6FA; margin-top:15px;">
+                    Happy Birthday to my sweet girl ❤️
+                </p>
 
-            <h1 class="final-title">
-                For Jasmin 💜
-            </h1>
-
-            <div class="photo-frame">
-
-                <img src="images/jasmin.jpg">
-
+                <div class="final-message">
+                    Thank you for every smile.
+                    <br><br>
+                    Even though we met only once,
+                    that memory became precious to me.
+                    <br><br>
+                    Your beautiful eyes and that first handshake
+                    are memories I still cherish.
+                    <br><br>
+                    — My Cute Cat 😚
+                </div>
             </div>
-
-            <p style="color:#E6E6FA;">
-                Happy Birthday to my sweet girl ❤️
-            </p>
-
-            <div class="final-message">
-
-                Thank you for every smile.
-
-                <br><br>
-
-                Even though we met only once,
-                that memory became precious to me.
-
-                <br><br>
-
-                Your beautiful eyes and that first handshake
-                are memories I still cherish.
-
-                <br><br>
-
-                — My Cute Cat 😚
-
-            </div>
-
-        </div>
         `;
 
-        document.querySelector(".card").style.opacity = "1";
+        card.style.opacity = "1";
 
         startSnowfall();
         startLavenderParticles();
@@ -174,15 +198,12 @@ function startCinematicReveal() {
 /* ---------------- SNOWFALL ---------------- */
 
 function startSnowfall() {
-
     if (snowInterval) clearInterval(snowInterval);
 
     snowInterval = setInterval(() => {
-
         const snow = document.createElement("div");
-
+        snow.className = "snow";
         snow.innerHTML = "❄️";
-
         snow.style.position = "fixed";
         snow.style.top = "-10px";
         snow.style.left = Math.random() * window.innerWidth + "px";
@@ -190,11 +211,12 @@ function startSnowfall() {
         snow.style.opacity = "0.8";
         snow.style.animation = "fall 6s linear forwards";
         snow.style.pointerEvents = "none";
+        snow.style.userSelect = "none";
 
         document.body.appendChild(snow);
 
         setTimeout(() => {
-            snow.remove();
+            if (snow.parentNode) snow.remove();
         }, 6000);
 
     }, 400);
@@ -203,27 +225,40 @@ function startSnowfall() {
 /* ---------------- LAVENDER PARTICLES ---------------- */
 
 function startLavenderParticles() {
-
     if (particleInterval) clearInterval(particleInterval);
 
     particleInterval = setInterval(() => {
-
         const particle = document.createElement("div");
-
         particle.className = "particle";
-
         particle.innerHTML = "💜";
-
         particle.style.left = Math.random() * window.innerWidth + "px";
-
-        particle.style.fontSize =
-            (14 + Math.random() * 10) + "px";
+        particle.style.fontSize = (14 + Math.random() * 10) + "px";
 
         document.body.appendChild(particle);
 
         setTimeout(() => {
-            particle.remove();
+            if (particle.parentNode) particle.remove();
         }, 10000);
 
     }, 1200);
 }
+
+/* ---------------- CLEANUP ---------------- */
+
+// Clean up intervals when page is unloaded
+window.addEventListener("beforeunload", () => {
+    if (countdownInterval) clearInterval(countdownInterval);
+    if (snowInterval) clearInterval(snowInterval);
+    if (particleInterval) clearInterval(particleInterval);
+});
+
+// Add shake animation for wrong answer
+const shakeStyle = document.createElement("style");
+shakeStyle.textContent = `
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        75% { transform: translateX(10px); }
+    }
+`;
+document.head.appendChild(shakeStyle);
