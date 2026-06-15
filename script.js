@@ -16,66 +16,65 @@ function updateCountdown() {
         unlocked = true;
 
         countdown.innerHTML = `
-            <div style="margin-top:20px;">
-                <div style="font-size:20px; color:#fff;">
-                    Your gift is ready ✨
-                </div>
+            <div style="font-size:18px; color:#fff;">
+                Your gift is ready ✨
+            </div>
 
-                <button id="openMemory" style="
-                    margin-top:15px;
-                    padding:10px 18px;
+            <button id="openMemory" style="
+                margin-top:15px;
+                padding:10px 18px;
+                border:none;
+                border-radius:20px;
+                background:#D4AF37;
+                color:black;
+                cursor:pointer;
+            ">
+                Unlock Memory 💌
+            </button>
+
+            <div id="memoryGate" style="display:none; margin-top:15px;">
+
+                <img src="images/jasmin.jpg" style="
+                    width:140px;
+                    border-radius:18px;
+                    margin-top:10px;
+                    box-shadow:0 0 25px rgba(255,255,255,0.25);
+                ">
+
+                <p style="color:#E6E6FA; margin-top:10px;">
+                    Happy Birthday to my sweet girl ❤️
+                </p>
+
+                <p style="margin-top:10px;">
+                    Answer to unlock memory 🌸
+                </p>
+
+                <input id="answer" placeholder="Type your answer..." style="
+                    padding:10px;
+                    border-radius:10px;
                     border:none;
-                    border-radius:20px;
-                    background:#D4AF37;
-                    color:black;
+                    outline:none;
+                    width:80%;
+                "/>
+
+                <button id="submitAnswer" style="
+                    margin-top:10px;
+                    padding:10px 15px;
+                    border:none;
+                    border-radius:15px;
+                    background:#800020;
+                    color:white;
                     cursor:pointer;
                 ">
-                    Unlock Memory 💌
+                    Submit
                 </button>
 
-                <div id="memoryGate" style="display:none; margin-top:15px;">
-                    
-                    <img src="images/jasmin.jpg" style="
-                        width:120px;
-                        border-radius:15px;
-                        margin-top:10px;
-                        box-shadow:0 0 20px rgba(255,255,255,0.2);
-                    ">
+                <p id="response"></p>
 
-                    <p style="margin-top:10px; color:#E6E6FA;">
-                        Happy Birthday to my sweet girl ❤️
-                    </p>
-
-                    <p>Answer to unlock memory 🌸</p>
-
-                    <input id="answer" placeholder="Type your answer..." style="
-                        padding:10px;
-                        border-radius:10px;
-                        border:none;
-                        outline:none;
-                        width:80%;
-                    "/>
-
-                    <button id="submitAnswer" style="
-                        margin-top:10px;
-                        padding:10px 15px;
-                        border:none;
-                        border-radius:15px;
-                        background:#800020;
-                        color:white;
-                        cursor:pointer;
-                    ">
-                        Submit
-                    </button>
-
-                    <p id="response"></p>
-
-                </div>
             </div>
         `;
 
         attachEvents();
-
         return;
     }
 
@@ -140,19 +139,26 @@ function startCinematicReveal() {
     setTimeout(() => {
 
         document.querySelector(".card").innerHTML = `
-        
-        <div style="text-align:center; animation:fadeIn 2s ease;">
+
+        <div class="scene">
 
             <h1 style="color:#E6E6FA;">Memory Unlocked 🌸</h1>
 
-            <p style="
-                margin-top:20px;
-                font-size:18px;
-                color:white;
-                line-height:1.8;
-            ">
-                I still remember the day we met.<br><br>
-                17th — a moment I can never forget.<br><br>
+            <div class="photo-frame">
+
+                <img src="images/jasmin.jpg" />
+
+                <div class="cloud-layer"></div>
+
+            </div>
+
+            <p style="color:#E6E6FA;">
+                Happy Birthday to my sweet girl ❤️
+            </p>
+
+            <p style="color:white; line-height:1.6;">
+                I still remember the day we met.<br>
+                17th — a moment I can never forget.<br>
                 Some memories don’t need many words.
             </p>
 
