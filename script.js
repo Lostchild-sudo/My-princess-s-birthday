@@ -1,9 +1,11 @@
 const countdown = document.getElementById("countdown");
+const ambienceMusic = document.getElementById("ambienceMusic");
 
 const targetDate = new Date("June 16, 2026 00:00:00").getTime();
 
 let unlocked = false;
 let snowInterval = null;
+let particleInterval = null;
 
 /* ---------------- COUNTDOWN ---------------- */
 
@@ -27,7 +29,8 @@ function updateCountdown() {
 
             <div id="memoryGate" style="display:none; margin-top:15px;">
 
-                <img src="images/jasmin.jpg" style="
+                <img src="images/jasmin.jpg"
+                style="
                     width:140px;
                     border-radius:18px;
                     margin-top:10px;
@@ -42,7 +45,9 @@ function updateCountdown() {
 
                 <input id="answer" placeholder="Type your answer..." />
 
-                <button id="submitAnswer">Submit</button>
+                <button id="submitAnswer">
+                    Submit
+                </button>
 
                 <p id="response"></p>
 
@@ -50,6 +55,7 @@ function updateCountdown() {
         `;
 
         setTimeout(attachEvents, 100);
+
         return;
     }
 
@@ -81,25 +87,27 @@ function attachEvents() {
     if (!openMemory) return;
 
     openMemory.addEventListener("click", () => {
+
+        ambienceMusic.volume = 0.20;
+        ambienceMusic.play();
+
         memoryGate.style.display = "block";
     });
 
     submit.addEventListener("click", () => {
 
         const ans = document.getElementById("answer").value.toLowerCase().trim();
-        const clean = ans.replace(/\s+/g, " ");
 
-        if (
-            clean.includes("17") &&
-            (clean.includes("january") || clean.includes("february") || clean.includes("march"))
-        ) {
+        if (ans.includes("17")) {
 
             response.innerHTML = "Unlocked ❤️";
 
             startCinematicReveal();
 
         } else {
+
             response.innerHTML = "Try again 🌿";
+
         }
     });
 }
@@ -116,55 +124,54 @@ function startCinematicReveal() {
 
         document.querySelector(".card").innerHTML = `
 
-<div class="scene">
+        <div class="scene">
 
-    <h1 class="final-title">
-        For Jasmin 💜
-    </h1>
+            <h1 class="final-title">
+                For Jasmin 💜
+            </h1>
 
-    <div class="photo-frame">
+            <div class="photo-frame">
 
-        <img src="images/jasmin.jpg">
+                <img src="images/jasmin.jpg">
 
-        <div class="cloud-layer"></div>
+            </div>
 
-    </div>
+            <p style="color:#E6E6FA;">
+                Happy Birthday to my sweet girl ❤️
+            </p>
 
-    <p style="color:#E6E6FA;">
-        Happy Birthday to my sweet girl ❤️
-    </p>
+            <div class="final-message">
 
-    <div class="final-message">
+                Thank you for every smile.
 
-        Thank you for every smile.
+                <br><br>
 
-        <br><br>
+                Even though we met only once,
+                that memory became precious to me.
 
-        Even though we met only once,
-        that memory became precious to me.
+                <br><br>
 
-        <br><br>
+                Your beautiful eyes and that first handshake
+                are memories I still cherish.
 
-        Your beautiful eyes and that first handshake
-        are memories I still cherish.
+                <br><br>
 
-        <br><br>
+                — Your Cute Cat 🐱
 
-        — Your Cute Cat 🐱
+            </div>
 
-    </div>
-
-</div>
-`;
+        </div>
+        `;
 
         document.querySelector(".card").style.opacity = "1";
 
         startSnowfall();
+        startLavenderParticles();
 
     }, 800);
 }
 
-/* ---------------- SNOWFALL (LIMITED) ---------------- */
+/* ---------------- SNOWFALL ---------------- */
 
 function startSnowfall() {
 
@@ -173,6 +180,7 @@ function startSnowfall() {
     snowInterval = setInterval(() => {
 
         const snow = document.createElement("div");
+
         snow.innerHTML = "❄️";
 
         snow.style.position = "fixed";
@@ -185,14 +193,20 @@ function startSnowfall() {
 
         document.body.appendChild(snow);
 
-        setTimeout(() => snow.remove(), 6000);
+        setTimeout(() => {
+            snow.remove();
+        }, 6000);
 
     }, 400);
 }
 
-function startLavenderParticles(){
+/* ---------------- LAVENDER PARTICLES ---------------- */
 
-    setInterval(() => {
+function startLavenderParticles() {
+
+    if (particleInterval) clearInterval(particleInterval);
+
+    particleInterval = setInterval(() => {
 
         const particle = document.createElement("div");
 
