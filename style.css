@@ -171,3 +171,19 @@ setInterval(() => {
     }, 6000);
 
 }, 1200);
+
+setInterval(() => {
+
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+    petal.innerHTML = "💜";
+
+    petal.style.left = Math.random() * window.innerWidth + "px";
+
+    document.body.appendChild(petal);
+
+    setTimeout(() => {
+        petal.remove();
+    }, 7000);
+
+}, 1500);
