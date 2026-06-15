@@ -1,1 +1,71 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at top, rgba(230,230,250,0.15), transparent 40%),
+    linear-gradient(135deg,#1b0d13,#4b0f25,#800020);
+    overflow:hidden;
+    font-family:'Cormorant Garamond', serif;
+    color:white;
+}
+
+.background-glow{
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(230,230,250,0.15);
+    filter:blur(120px);
+}
+
+.card{
+    width:90%;
+    max-width:420px;
+    padding:45px 30px;
+    text-align:center;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:30px;
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,0.4);
+}
+
+h1{
+    font-size:42px;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+.subtitle{
+    color:#E6E6FA;
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+.gold-line{
+    width:80px;
+    height:1px;
+    background:#D4AF37;
+    margin:20px auto;
+}
+
+#countdown{
+    margin-top:30px;
+    font-size:28px;
+    color:#ffffff;
+    line-height:1.8;
+}
